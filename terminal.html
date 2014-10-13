@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="terminal">
+    <head>
+        <title>Maintenance mode - ninetwozero.com</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                background: #000;
+                color: #FFF;
+                font-family: monospace;
+            }
+
+            
+            /* The actual prompt */
+            #prompt {
+                margin-right: 8px; /* Apparently, a space is ~8px */
+                float: left;
+            }
+            
+            input {
+                width: 98%; 
+                border: 0; 
+                background: none;   
+                color: #FFF;
+                float: left;
+                font-family: monospace;
+                font-size: 13px;
+            }
+            
+            input:focus {
+                outline: none;   
+            }
+            
+            /* Terminal colors */
+            .red {
+                color: #FF0000;   
+            }
+            .green {
+                color: #00FF00;   
+            }
+            .blue {
+                color: #0000FF;   
+            }
+        </style>
+        <script src="angular.min.js"></script>
+        <script src="terminal.js"></script>
+    </head>
+    <body ng-controller="NTZTerminalController">
+        <pre ng-bind-html="secureContents"></pre>
+        <span id="prompt" ng-bind-html="securePs1"></span>
+        <input name="command" ng-model="currentCommand" ng-keypress="runCommandFromPrompt($event)">
+    </body>
+</html>
